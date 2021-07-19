@@ -5,9 +5,26 @@
 \ctexset{chapter/numbering=false}
 \ctexset{
     section={numbering=false, afterskip = 0ex},
-    subsection={numbering=false, afterskip = 0ex}
+    subsection={format=\large\heiti\centering,numbering=false,beforeskip=1ex,afterskip = 1.75ex}
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
+
+\newenvironment{yinyong}{%
+    \begin{list}{}{\parsep\parskip
+        \setlength\topsep{0pt}
+        \setlength\itemindent{2em}%
+        \setlength\parindent{2em}
+        \setlength\listparindent{2em}
+        \setlength{\leftmargin}{2em}
+        \setlength{\rightmargin}{2em}
+        \kaishu
+    }
+    \item[]
+}{
+  \end{list}
+}
+
+
 
 \title{毛泽东思想万岁5}
 \author{毛泽东}

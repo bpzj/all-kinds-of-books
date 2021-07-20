@@ -6,7 +6,7 @@
 \ctexset{chapter/numbering=false}
 \ctexset{
     section={numbering=false, afterskip = 0ex},
-    subsection={numbering=false, afterskip = 0ex}
+    subsection={format=\large\heiti\centering,numbering=false,beforeskip=1ex,afterskip = 1.75ex}
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
 
@@ -21,6 +21,21 @@
 % 给脚注编号前后添加 〔〕
 \renewcommand\thefootnote{{〔\arabic{footnote}〕\hspace{-0.64em}}} 
 
+% 引用样式
+\newenvironment{yinyong}{%
+    \begin{list}{}{\parsep\parskip
+        \setlength\topsep{0pt}
+        \setlength\itemindent{2em}%
+        \setlength\parindent{2em}
+        \setlength\listparindent{2em}
+        \setlength{\leftmargin}{2em}
+        \setlength{\rightmargin}{2em}
+        \kaishu
+    }
+    \item[]
+}{
+  \end{list}
+}
 
 \title{毛泽东思想万岁5}
 \author{毛泽东}
@@ -41,9 +56,9 @@
 \input{5-005-1961.3-在广州会议上的讲话（节录）（一九六一年三月）.tex}
 \input{5-006-1961.4.28-在接见亚洲、非洲外宾时的谈话（一九六一年四月二十八日）.tex}
 \input{5-007-1961.4.19-在接见古巴文化代表团时的谈话（一九六一年四月十九日）.tex}
-\input{5-008-1961.5.3-调查成灾一例（一九六一年五月三十日）.tex}
+\input{5-008-1961.5.30-调查成灾一例（一九六一年五月三十日）.tex}
 \input{5-009-1961.6.12-在北京会议上的讲话（一九六一年六月十二日）.tex}
-\input{5-010-1961.7.3-给江西共产主义劳动大学的一封信（一九六一年七月三十日）.tex}
+\input{5-010-1961.7.30-给江西共产主义劳动大学的一封信（一九六一年七月三十日）.tex}
 \input{5-011-1961.9.6-对《各地贯彻执行六十条的情况和问题》的批语（一九六一年九月六日）.tex}
 \input{5-012-1961.9.29-给政治局常委及有关同志的信（一九六一年九月二十九日）.tex}
 \input{5-013-1961.1.7-在接见日本朋友时的谈话（一九六一年十月七日）.tex}

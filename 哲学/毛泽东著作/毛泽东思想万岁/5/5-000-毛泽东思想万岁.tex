@@ -19,7 +19,7 @@
 \usepackage{etoolbox}
 \patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}
 % 给脚注编号前后添加 〔〕
-\renewcommand\thefootnote{{〔\arabic{footnote}〕\hspace{-0.64em}}} 
+\renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
 
 % 引用样式
 \newenvironment{yinyong}{%

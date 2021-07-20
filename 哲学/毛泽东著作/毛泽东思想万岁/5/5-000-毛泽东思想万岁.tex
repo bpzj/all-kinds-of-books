@@ -1,6 +1,7 @@
 \documentclass[b5paper,oneside,12pt]{ctexbook}
 \usepackage[hmargin=0.25in,vmargin=0.5in]{geometry} 
 \usepackage[]{hyperref}
+
 \pagestyle{plain} %整书页眉页脚设置
 \ctexset{chapter/numbering=false}
 \ctexset{
@@ -8,6 +9,18 @@
     subsection={numbering=false, afterskip = 0ex}
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
+
+% 下面是修改了脚注样式
+% 一些LATEX内部命令含有@字符,如\@addtoreset,如果需要在文档中使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
+\makeatletter
+% 无上标的 \@makefnmark
+\def\nosuper@makefnmark{\hbox{\normalfont\@thefnmark\space}}
+% 补丁
+\usepackage{etoolbox}
+\patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}
+% 给脚注编号前后添加 〔〕
+\renewcommand\thefootnote{{〔\arabic{footnote}〕\hspace{-0.64em}}} 
+
 
 \title{毛泽东思想万岁5}
 \author{毛泽东}

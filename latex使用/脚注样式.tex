@@ -1,0 +1,26 @@
+\documentclass{ctexart}
+
+% 一些LATEX内部命令含有@字符,如\@addtoreset,如果需要在文档中使用这些内部命令,
+\makeatletter
+% 无上标的 \@makefnmark
+\def\nosuper@makefnmark{\hbox{\normalfont\@thefnmark\space}}
+% 补丁
+\usepackage{etoolbox}
+\patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}
+
+%% 不用 etoolbox 的另一种打临时热补丁的写法
+%\let\save@makefntext\@makefntext
+%\long\def\@makefntext#1{{%
+%  \let\@makefnmark\nosuper@makefnmark
+%  \save@makefntext{#1}}}
+
+% XeTeX 或 LuaTeX 下带圈数字 \thefootnote 的一种定义
+\usepackage{xunicode-addon}
+\newfontfamily\fnmarkfont{ipam.ttf}
+\renewcommand\thefootnote{{\fnmarkfont\textcircled{\arabic{footnote}}}}
+
+\begin{document}
+
+正文\footnote{脚注}
+
+\end{document}

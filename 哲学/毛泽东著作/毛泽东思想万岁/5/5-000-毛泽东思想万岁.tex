@@ -21,7 +21,9 @@
 % 给脚注编号前后添加 〔〕
 \renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
 
-% 引用样式
+\usepackage{calc} % 可以在命令中计算长度
+
+% 引用样式：使用 latex 原始的 list 环境
 \newenvironment{yinyong}{%
     \begin{list}{}{\parsep\parskip
         \setlength\topsep{0pt}

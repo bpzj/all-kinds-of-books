@@ -1,15 +1,30 @@
 \documentclass[b5paper,oneside,12pt]{ctexbook}
-\usepackage[hmargin=0.25in,vmargin=0.5in]{geometry} 
+\usepackage[hmargin=0.3in,vmargin=0.5in]{geometry} 
 \usepackage[]{hyperref}
 \usepackage[]{multirow}
 
 \pagestyle{plain} %整书页眉页脚设置
+\setlength{\marginparsep}{2pt}
+\setlength{\marginparwidth}{20pt}
+
 \ctexset{chapter/numbering=false}
 \ctexset{
     section={numbering=false, afterskip = 0ex},
     subsection={format=\large\heiti\centering,numbering=false,beforeskip=1ex,afterskip = 1.75ex}
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
+
+\newcommand{\kaoyouriqi}[1]{{\raggedleft #1 \hspace{2em} \par}}
+
+\newcommand{\kaitiqianming}[1]{{\raggedleft\large\kaishu\ziju{1} #1 \hspace{5em} \par}}
+
+\newcommand{\yirendaizhiwei}[2]{
+    {\setlength{\tabcolsep}{0em}
+    {\raggedleft\begin{tabular} {cc}%
+        #1 & \quad{} #2 \hspace{4em} \\ 
+        \end{tabular} \\[1pt]}}
+}
+
 
 % 下面是修改了脚注样式
 % 一些LATEX内部命令含有@字符,如\@addtoreset,如果需要在文档中使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.

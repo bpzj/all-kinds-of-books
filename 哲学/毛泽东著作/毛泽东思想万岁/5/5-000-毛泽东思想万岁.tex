@@ -14,10 +14,11 @@
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
 
-\newcommand{\kaoyouriqi}[1]{{\raggedleft #1 \hspace{2em} \par}}
+\newcommand{\kaoyouerziju}[1]{{\raggedleft #1 \hspace{2em} \par}}
 
 \newcommand{\kaitiqianming}[1]{{\raggedleft\large\kaishu\ziju{1} #1 \hspace{5em} \par}}
 
+% 一人带职位
 \newcommand{\yirendaizhiwei}[2]{
     {\setlength{\tabcolsep}{0em}
     {\raggedleft\begin{tabular} {cc}%
@@ -25,6 +26,21 @@
         \end{tabular} \\[1pt]}}
 }
 
+\newcommand{\youxiadingkuan}[1]{
+    \begin{list}{}{
+        \setlength{\topsep}{0pt}        % 列表与正文的垂直距离
+        \setlength{\partopsep}{0pt}     % 
+        \setlength{\parsep}{\parskip}   % 一个 item 内有多段，段落间距
+        \setlength{\itemsep}{0pt}       % 两个 item 之间，减去 \parsep 的距离
+        \setlength{\itemindent}{0pt}%
+        \setlength\parindent{0pt}
+        \setlength\listparindent{0pt}
+        \setlength{\leftmargin}{0.4\linewidth}
+        \setlength{\rightmargin}{2em}
+    }
+    \item[] #1
+    \end{list}
+}
 
 % 下面是修改了脚注样式
 % 一些LATEX内部命令含有@字符,如\@addtoreset,如果需要在文档中使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.

@@ -8,3 +8,4 @@
 *.xdv
 *.out
 .DS_Store
+.idea/

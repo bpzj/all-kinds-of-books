@@ -1,7 +1,7 @@
 \documentclass[b5paper,oneside,12pt]{ctexbook}
 \usepackage[hmargin=0.3in,vmargin=0.5in]{geometry} 
-\usepackage[]{hyperref}
 \usepackage[]{multirow}
+\usepackage[perpage]{footmisc} %脚注
 
 \pagestyle{plain} %整书页眉页脚设置
 \setlength{\marginparsep}{2pt}
@@ -47,14 +47,33 @@
 % 一些LATEX内部命令含有@字符,如\@addtoreset,如果需要在文档中使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
 \makeatletter
 % 无上标的 \@makefnmark
-\def\nosuper@makefnmark{\hbox{\normalfont\@thefnmark\space}}
+\def\nosuper@makefnmark{}
 % 补丁
 \usepackage{etoolbox}
-\patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}
+% \patchcmd{\@makefntext}
+%     {\@makefnmark}
+%     {\hbox{\normalfont\@thefnmark}}
+%     {}{}
+
+\renewcommand{\@makefnmark}{\hbox{\normalfont\@thefnmark}}
+
+% \patchcmd{\@footnotemark}
+%     {\@makefnmark}
+%     {\hbox{\normalfont\@thefnmark}}
+%     {}{}
+
 % 给脚注编号前后添加 〔〕
-\renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
+% \renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
+
+% \patchcmd{\@makefntext}
+% {\ifFN@hangfoot\bgroup}
+% {\ifFN@hangfoot\bgroup\def\@makefnmark{\normalfont\@thefnmark}}
+% {}{}
+
+\makeatother
 
 \usepackage{calc} % 可以在命令中计算长度
+\usepackage[]{hyperref} % 放在 footmisc 后面
 
 % 引用样式：使用 latex 原始的 list 环境
 \newenvironment{yinyong}{%

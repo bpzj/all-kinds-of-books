@@ -1,0 +1,130 @@
+\documentclass[b5paper,oneside,12pt]{ctexbook}
+\usepackage[hmargin=0.3in,vmargin=0.5in]{geometry} 
+\usepackage[]{multirow}
+\usepackage[perpage,hang]{footmisc} %脚注
+
+\pagestyle{plain} %整书页眉页脚设置
+\setlength{\marginparsep}{2pt}
+\setlength{\marginparwidth}{20pt}
+
+\ctexset{chapter/numbering=false}
+\ctexset{
+    section={numbering=false, afterskip = 0ex},
+    subsection={format=\large\heiti\centering,numbering=false,beforeskip=1ex,afterskip = 1.75ex}
+}
+\newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
+
+% 靠右对齐，右边距2字
+\newcommand{\kaoyouerziju}[1]{{\raggedleft #1 \hspace{2em} \par}}
+% 楷体，右边距5字
+\newcommand{\kaitiqianming}[1]{{\raggedleft\large\kaishu\ziju{1} #1 \hspace{5em} \par}}
+
+% 一人带职位
+\newcommand{\yirendaizhiwei}[2]{
+    {\setlength{\tabcolsep}{0em}
+    {\raggedleft\begin{tabular} {cc}%
+        #1 & \quad{} #2 \hspace{4em} \\ 
+        \end{tabular} \\[1pt]}}
+}
+
+% 右下定宽
+\newcommand{\youxiadingkuan}[1]{
+    \begin{list}{}{
+        \setlength{\topsep}{0pt}        % 列表与正文的垂直距离
+        \setlength{\partopsep}{0pt}     % 
+        \setlength{\parsep}{\parskip}   % 一个 item 内有多段，段落间距
+        \setlength{\itemsep}{0pt}       % 两个 item 之间，减去 \parsep 的距离
+        \setlength{\itemindent}{0pt}%
+        \setlength\parindent{0pt}
+        \setlength\listparindent{0pt}
+        \setlength{\leftmargin}{0.4\linewidth}
+        \setlength{\rightmargin}{2em}
+    }
+    \item[] #1
+    \end{list}
+}
+
+\usepackage{etoolbox}
+
+% 下面是修改了脚注样式
+% 一些LATEX内部命令含有@字符,如\@addtoreset,如需使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
+\makeatletter
+% 补丁，改脚注文本前面的序号的字体，去掉其上标样式 
+\patchcmd{\@makefntext}
+    {\@makefnmark}
+    {\hbox{\normalfont\@thefnmark}}
+    {}{}
+
+% 给脚注编号前后添加 〔〕
+\renewcommand\thefootnote{{〔\arabic{footnote}〕}} 
+
+%% 开启 footmisc 的 hang 选项
+\setlength{\footnotemargin}{1.25em}     % 整个脚注文本的左边距，加此边距，来显示脚注序号。
+\setlength{\skip\footins}{1\baselineskip} % 脚注线 和 脚注内容 间距 
+% \setlength{\footnotesep}{\skip\footins} % 两个脚注文本之间的间距
+\renewcommand{\hangfootparskip}{0pt}
+\renewcommand{\hangfootparindent}{2em}
+
+% \patchcmd{\@makefntext}
+% {\ifFN@hangfoot\bgroup}
+% {\ifFN@hangfoot\bgroup\def\@makefnmark{\normalfont\@thefnmark}}
+% {}{}
+
+\makeatother
+
+\usepackage{calc} % 可以在命令中计算长度
+\usepackage[]{hyperref} % 放在 footmisc 后面
+
+% 引用样式：使用 latex 原始的 list 环境
+\newenvironment{yinyong}{%
+    \begin{list}{}{\parsep\parskip
+        \setlength\topsep{0pt}
+        \setlength\itemindent{2em}%
+        \setlength\parindent{2em}
+        \setlength\listparindent{2em}
+        \setlength{\leftmargin}{2em}
+        \setlength{\rightmargin}{2em}
+        \kaishu
+    }
+    \item[]
+}{
+  \end{list}
+}
+
+\title{毛泽东思想万岁\\1958.1—1960}
+\author{毛泽东}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+
+\input{4-001-1958.1.3-在杭州会议上的讲话（一）（一九五八年一月三日）.tex}
+\input{4-002-1958.1.4-在杭州会议上的讲话（二）（一九五八年一月四日）.tex}
+\input{4-003-1958.1.11-在南宁会议上的讲话（一）（一九五八年一月十一日）.tex}
+\input{4-004-1958.1.12-在南宁会议上的讲话（二）（一九五八年一月十二日）.tex}
+\input{4-005-1958.1.12-关于报纸工作给刘建勋、韦国清同志的一封信（一九五八年一月十二日）.tex}
+\input{4-006-1958.1.19-给《文艺报》编委会的一封信关于1958年第二期《再批判》栏的按语（一九五八年一月十九日）.tex}
+\input{4-007-1958.1.28-在最高国务会议上的讲话（一九五八年一月二十八日）.tex}
+\input{4-008-1958.1-在最高国务会议上讲话要点（一九五八年一月二十八、三十日）.tex}
+\input{4-009-1958.1.31-在中央政治局会议上讨论教育工作时的指示（一九五八年一月三十一日）.tex}
+\input{4-010-1958.2.8-反浪费反保守是当前整风运动的中心任务（一九五八年二月八日）.tex}
+\input{4-011-1958.1.31-工作方法六十条（草案）（一九五八年一月三十一日）.tex}
+\input{4-012-1958.3.9-在成都会议上的讲话（一）（一九五八年三月九日）.tex}
+\input{4-013-1958.3.1-在成都会议上的讲话（二）（一九五八年三月十日）.tex}
+\input{4-014-1958.3.2-在成都会议上的讲话（三）（一九五八年三月二十日）.tex}
+\input{4-015-1958.3.22-在成都会议上的讲话（四）（一九五八年三月二十二日）.tex}
+\input{4-016-1959.3.25-在成都会议上的讲话（五）（一九五九年三月二十五日）.tex}
+\input{4-017-1958.3.26-在成都会议上的讲话（六）（一九五八年三月二十六日）.tex}
+\input{4-018-1958.3-在成都会议上的插话（一九五八年三月）.tex}
+\input{4-019-1958.3.19-对《中国农村社会主义高潮》一书《按语》的批示（一九五八年三月十九日）.tex}
+\input{4-020-1958.3.22-对《上海化工学院两个右派分子的大字报》的批语（一九五八年三月二十二日）.tex}
+\input{4-021-1958.3.28-和《江峡》轮船员的谈话（一九五八年三月二十八日）.tex}
+\input{4-022-1958.3-视察四川省一个养猪场时的谈话（一九五八年三月）.tex}
+\input{4-023-1958.4.6-在汉口会议上的讲话（一九五八年四月六日）.tex}
+
+\end{document}

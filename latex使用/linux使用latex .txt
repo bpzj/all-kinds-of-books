@@ -19,16 +19,7 @@ find /usr/lib/ -maxdepth 2 | grep libmiktex- | xargs -r rm
 find /usr/ -maxdepth 3 | grep miktex | xargs -r rm
 
 
-## 
-apt-get install --yes --no-install-recommends texlive-fonts-recommended texlive-generic-recommended texlive-lang-chinese texlive-xetex
-
-miktex-xelatex,xelatexdef,htxelatex,xelatex,xelatex-dev
-
-pdflatex,gbkpdflatex,cefpdflatex,pdflatexdef,cef5pdflatex,sjispdflatex,cefspdflatex,miktex-pdflatex,bg5pluspdflatex,bg5ppdflatex,pdflatex-dev,bg5pdflatex,pdflatexpicscale,
-
-mllatex,latexdiff-so,,cef5latex,arlatex,bg5pluslatex,cslatex,latex,miktex-lualatex,latex-git-log,lualatex-dev,luahblatex,latexdef,bg5platex,latex-dev,latexmk,cefslatex,,pdfcslatex,latexdiff-vc,luahblatex-dev,git-latexdiff,gbklatex,latex2nemeth,lualatexdef,ceflatex,latexpand,miktex-latex,sjislatex,,latex-papersize,latexrevise,latexindent,latexdiff,dvilualatex,lualatex,pylatex,latex2man,bg5latex,latexdiff-fast,fig4latex,htlatex
-
-# 安装 
+### 安装 
 apt-get install --yes --no-install-recommends texlive-xetex texlive-lang-chinese texlive-lang-cjk texlive-plain-generic texlive-fonts-recommended
 
 会安装以下：

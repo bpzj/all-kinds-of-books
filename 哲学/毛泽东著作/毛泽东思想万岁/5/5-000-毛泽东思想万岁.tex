@@ -4,9 +4,10 @@
 \usepackage[perpage,hang]{footmisc} %脚注
 
 \pagestyle{plain} %整书页眉页脚设置
-\setlength{\marginparsep}{2pt}
+\setlength{\marginparsep}{2pt} % 边注设置
 \setlength{\marginparwidth}{20pt}
 
+% 章节样式
 \ctexset{chapter/numbering=false}
 \ctexset{
     section={numbering=false, afterskip = 0ex},
@@ -14,37 +15,8 @@
 }
 \newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
 
-% 靠右对齐，右边距2字
-\newcommand{\kaoyouerziju}[1]{{\raggedleft #1 \hspace{2em} \par}}
-% 楷体，右边距5字
-\newcommand{\kaitiqianming}[1]{{\raggedleft\large\kaishu\ziju{1} #1 \hspace{5em} \par}}
-
-% 一人带职位
-\newcommand{\yirendaizhiwei}[2]{
-    {\setlength{\tabcolsep}{0em}
-    {\raggedleft\begin{tabular} {cc}%
-        #1 & \quad{} #2 \hspace{4em} \\ 
-        \end{tabular} \\[1pt]}}
-}
-
-\newcommand{\youxiadingkuan}[1]{
-    \begin{list}{}{
-        \setlength{\topsep}{0pt}        % 列表与正文的垂直距离
-        \setlength{\partopsep}{0pt}     % 
-        \setlength{\parsep}{\parskip}   % 一个 item 内有多段，段落间距
-        \setlength{\itemsep}{0pt}       % 两个 item 之间，减去 \parsep 的距离
-        \setlength{\itemindent}{0pt}%
-        \setlength\parindent{0pt}
-        \setlength\listparindent{0pt}
-        \setlength{\leftmargin}{0.4\linewidth}
-        \setlength{\rightmargin}{2em}
-    }
-    \item[] #1
-    \end{list}
-}
 
 \usepackage{etoolbox}
-
 % 下面是修改了脚注样式
 % 一些LATEX内部命令含有@字符,如\@addtoreset,如需使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
 \makeatletter
@@ -74,6 +46,7 @@
 \usepackage{calc} % 可以在命令中计算长度
 \usepackage[]{hyperref} % 放在 footmisc 后面
 
+%%%%%% 自定义新样式
 % 引用样式：使用 latex 原始的 list 环境
 \newenvironment{yinyong}{%
     \begin{list}{}{\parsep\parskip
@@ -89,6 +62,52 @@
 }{
   \end{list}
 }
+
+% 靠右对齐，右边距2字
+\newcommand{\kaoyouerziju}[1]{{\raggedleft #1 \hspace{2em} \par}}
+% 楷体，右边距5字
+\newcommand{\kaitiqianming}[1]{{\raggedleft\large\kaishu\ziju{1} #1 \hspace{5em} \par}}
+
+% 一人带职位
+\newcommand{\yirendaizhiwei}[2]{
+    {\setlength{\tabcolsep}{0em}
+    {\raggedleft\begin{tabular} {cc}%
+        #1 & \quad{} #2 \hspace{4em} \\ 
+        \end{tabular} \\[1pt]}}
+}
+
+% 右下定宽
+\newcommand{\youxiadingkuan}[1]{
+    \begin{list}{}{
+        \setlength{\topsep}{0pt}        % 列表与正文的垂直距离
+        \setlength{\partopsep}{0pt}     % 
+        \setlength{\parsep}{\parskip}   % 一个 item 内有多段，段落间距
+        \setlength{\itemsep}{0pt}       % 两个 item 之间，减去 \parsep 的距离
+        \setlength{\itemindent}{0pt}%
+        \setlength\parindent{0pt}
+        \setlength\listparindent{0pt}
+        \setlength{\leftmargin}{0.4\linewidth}
+        \setlength{\rightmargin}{2em}
+    }
+    \item[] #1
+    \end{list}
+}
+
+% 对话，文章为几人对话的样式
+\newenvironment{duihua}{
+	\begin{list}{}{
+        \setlength{\topsep}{0pt}        % 列表与正文的垂直距离
+        \setlength{\partopsep}{0pt}     % 
+        \setlength{\parsep}{\parskip}   % 一个 item 内有多段，段落间距
+        \setlength{\itemsep}{\lineskip}       % 两个 item 之间，减去 \parsep 的距离
+        \setlength{\labelsep}{0pt}%
+        \setlength{\labelwidth}{3em}%
+        \setlength{\itemindent}{0pt}%
+        \setlength\listparindent{\parindent}
+        \setlength{\leftmargin}{3em}
+        \setlength{\rightmargin}{0pt}
+        }
+}{\end{list}}
 
 \title{毛泽东思想万岁\\1960.1—1968.5}
 \author{毛泽东}

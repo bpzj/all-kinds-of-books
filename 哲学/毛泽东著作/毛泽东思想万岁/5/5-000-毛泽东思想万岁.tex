@@ -26,8 +26,8 @@
     {\hbox{\normalfont\@thefnmark}}
     {}{}
 
-% 给脚注编号前后添加 〔〕
-\renewcommand\thefootnote{{〔\arabic{footnote}〕}} 
+% 给脚注编号前后添加 〔〕，hspace 为了调整加完〔〕之后的间距
+\renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
 
 %% 开启 footmisc 的 hang 选项
 \setlength{\footnotemargin}{1.25em}     % 整个脚注文本的左边距，加此边距，来显示脚注序号。

@@ -1,7 +1,7 @@
 \documentclass[b5paper,oneside,12pt]{ctexbook}
 \usepackage[hmargin=0.3in,vmargin=0.5in]{geometry} 
 \usepackage[]{multirow}
-\usepackage[perpage,hang]{footmisc} %脚注
+\usepackage{calc} % 可以在命令中计算长度
 
 \pagestyle{plain} %整书页眉页脚设置
 \setlength{\marginparsep}{2pt} % 边注设置
@@ -13,22 +13,9 @@
     section={numbering=false, afterskip = 0ex},
     subsection={format=\large\heiti\centering,numbering=false,beforeskip=1ex,afterskip = 1.75ex}
 }
-\newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  %自定义日期副标题格式，为了保险，最好使用两层大括号
 
 
-\usepackage{etoolbox}
-% 下面是修改了脚注样式
-% 一些LATEX内部命令含有@字符,如\@addtoreset,如需使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
-\makeatletter
-% 补丁，改脚注文本前面的序号的字体，去掉其上标样式 
-\patchcmd{\@makefntext}
-    {\@makefnmark}
-    {\hbox{\normalfont\@thefnmark}}
-    {}{}
-
-% 给脚注编号前后添加 〔〕，hspace 为了调整加完〔〕之后的间距
-\renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
-
+\usepackage[perpage,hang]{footmisc} %脚注
 %% 开启 footmisc 的 hang 选项
 \setlength{\footnotemargin}{1.25em}     % 整个脚注文本的左边距，加此边距，来显示脚注序号。
 \setlength{\skip\footins}{1\baselineskip} % 脚注线 和 脚注内容 间距 
@@ -36,17 +23,37 @@
 \renewcommand{\hangfootparskip}{0pt}
 \renewcommand{\hangfootparindent}{2em}
 
+\usepackage{etoolbox}
+% 一些LATEX内部命令含有@字符,如\@addtoreset,如需使用这些内部命令,就需要借助于另两个命令\makeatletter和\makeatother.
+% \makeatletter
+% 此补丁去掉脚注内容前面序号的上标样式，不与 footnotebackref 包兼容，与hyperref 兼容
+% \patchcmd{\@makefntext}
+    % {\@makefnmark}
+    % {\hbox{\normalfont\@thefnmark}}
+    % {}{}
+
+% 此补丁，可用于仅使用 footmisc 时，去除上标样式，可能要改动
 % \patchcmd{\@makefntext}
 % {\ifFN@hangfoot\bgroup}
 % {\ifFN@hangfoot\bgroup\def\@makefnmark{\normalfont\@thefnmark}}
 % {}{}
+% \makeatother
 
+% 给脚注编号前后添加 〔〕，hspace 为了调整加完〔〕之后的间距
+\renewcommand\thefootnote{{\hspace{-0.55em}〔\arabic{footnote}〕\hspace{-0.68em}}} 
+
+% \usepackage[]{hyperref} % 放在 footmisc 后面
+
+\usepackage[numberlinked]{footnotebackref} % 与 hyperref 同时使用需要注意
+\makeatletter
+% 此补丁 与 footnotebackref 包配合，去掉脚注内容前面序号的上标样式 
+\patchcmd{\@makefntext}{\textsuperscript}{}{}{}
 \makeatother
 
-\usepackage{calc} % 可以在命令中计算长度
-\usepackage[]{hyperref} % 放在 footmisc 后面
 
 %%%%%% 自定义新样式
+%自定义日期副标题格式，为了保险，最好使用两层大括号
+\newcommand\datesubtitle[1]{{\centering\large #1\par\vspace{1ex}}}  
 % 引用样式：使用 latex 原始的 list 环境
 \newenvironment{yinyong}{%
     \begin{list}{}{\parsep\parskip
